@@ -1,87 +1,51 @@
 import FileIo
 import NGrams
 
-
-FILE_D1 ="Data/D1.txt"
-FILE_D2 ="Data/D2.txt"
-FILE_D3 ="Data/D3.txt"
-FILE_D4 ="Data/D4.txt"
+ALL_FILES = ["Data/D1.txt", "Data/D2.txt", "Data/D3.txt", "Data/D4.txt"]
 
 TWO_GRAM = 2
 THREE_GRAM = 3
 
-"""Construct character 2-grams for all documents"""
-d1_char_2_grams = NGrams.get_character_n_grams(FileIo.get_text_file_contents(FILE_D1), TWO_GRAM)
-d1_char_2_gram_set = set()
-for n_gram in d1_char_2_grams:
-    d1_char_2_gram_set.add(n_gram)
-print("D1.txt has " + str(len(d1_char_2_gram_set)) + " character 2-grams")
+"""Return character n-gram set"""
+def get_character_n_gram_set(file_name, n):
+    char_n_grams = NGrams.get_character_n_grams(FileIo.get_text_file_contents(file_name), n)
+    char_n_gram_set = set()
+    for n_gram in char_n_grams:
+        char_n_gram_set.add(n_gram)
+    return char_n_gram_set
 
-d2_char_2_grams = NGrams.get_character_n_grams(FileIo.get_text_file_contents(FILE_D2), TWO_GRAM)
-d2_char_2_gram_set = set()
-for n_gram in d2_char_2_grams:
-    d2_char_2_gram_set.add(n_gram)
-print("D2.txt has " + str(len(d2_char_2_gram_set)) + " character 2-grams")
+"""Return word n-gram set"""
+def get_word_n_gram_set(file_name, n):
 
-d3_char_2_grams = NGrams.get_character_n_grams(FileIo.get_text_file_contents(FILE_D3), TWO_GRAM)
-d3_char_2_gram_set = set()
-for n_gram in d3_char_2_grams:
-    d3_char_2_gram_set.add(n_gram)
-print("D3.txt has " + str(len(d3_char_2_gram_set)) + " character 2-grams")
+    word_n_grams = NGrams.get_word_n_grams(FileIo.get_text_file_contents(file_name), n)
+    word_n_gram_set = set()
+    for n_gram in word_n_grams:
+        word_n_gram_set.add(n_gram)
+    return word_n_gram_set
 
-d4_char_2_grams = NGrams.get_character_n_grams(FileIo.get_text_file_contents(FILE_D4), TWO_GRAM)
-d4_char_2_gram_set = set()
-for n_gram in d4_char_2_grams:
-    d4_char_2_gram_set.add(n_gram)
-print("D4.txt has " + str(len(d4_char_2_gram_set)) + " character 2-grams")
+"""Print n-gram counts and return n-gram sets"""
+def get_n_gram_sets():
 
+    character_2_gram_sets = set()
+    character_3_gram_sets = set()
+    word_2_gram_sets = set()
 
-"""Construct character 3-grams for all documents"""
-d1_char_3_grams = NGrams.get_character_n_grams(FileIo.get_text_file_contents(FILE_D1), THREE_GRAM)
-d1_char_3_gram_set = set()
-for n_gram in d1_char_3_grams:
-    d1_char_3_gram_set.add(n_gram)
-print("D1.txt has " + str(len(d1_char_3_gram_set)) + " character 3-grams")
+    for file_name in ALL_FILES:
 
-d2_char_3_grams = NGrams.get_character_n_grams(FileIo.get_text_file_contents(FILE_D2), THREE_GRAM)
-d2_char_3_gram_set = set()
-for n_gram in d2_char_3_grams:
-    d2_char_3_gram_set.add(n_gram)
-print("D2.txt has " + str(len(d2_char_3_gram_set)) + " character 3-grams")
+        character_2_gram_sets.add(get_character_n_gram_set(file_name, TWO_GRAM))
+        character_3_gram_sets.add(get_character_n_gram_set(file_name, THREE_GRAM))
+        word_2_gram_sets.add(get_word_n_gram_set(file_name, TWO_GRAM))
 
-d3_char_3_grams = NGrams.get_character_n_grams(FileIo.get_text_file_contents(FILE_D3), THREE_GRAM)
-d3_char_3_gram_set = set()
-for n_gram in d3_char_3_grams:
-    d3_char_3_gram_set.add(n_gram)
-print("D3.txt has " + str(len(d3_char_3_gram_set)) + " character 3-grams")
+        print(file_name + " has " + str(len(character_2_gram_sets[len(character_2_gram_sets) - 1])) + " character " + str(TWO_GRAM) + "-grams")
+        print(file_name + " has " + str(len(character_3_gram_sets[len(character_3_gram_sets) - 1])) + " character " + str(THREE_GRAM) + "-grams")
+        print(file_name + " has " + str(len(word_2_gram_sets[len(word_2_gram_sets) - 1])) + " word " + str(TWO_GRAM) + "-grams")
 
-d4_char_3_grams = NGrams.get_character_n_grams(FileIo.get_text_file_contents(FILE_D4), THREE_GRAM)
-d4_char_3_gram_set = set()
-for n_gram in d4_char_3_grams:
-    d4_char_3_gram_set.add(n_gram)
-print("D4.txt has " + str(len(d4_char_3_gram_set)) + " character 3-grams")
+        return character_2_gram_sets, character_3_gram_sets, word_2_gram_sets
 
-"""Construct word 2-grams for all documents"""
-d1_word_2_grams = NGrams.get_word_n_grams(FileIo.get_text_file_contents(FILE_D1), TWO_GRAM)
-d1_word_2_gram_set = set()
-for n_gram in d1_word_2_grams:
-    d1_word_2_gram_set.add(n_gram)
-print("D1.txt has " + str(len(d1_word_2_gram_set)) + " word 2-grams")
+"""Print Jaccard Similarity for eklements in the set"""
+def print_jaccard_similarity(list_of_sets):
 
-d2_word_2_grams = NGrams.get_word_n_grams(FileIo.get_text_file_contents(FILE_D2), TWO_GRAM)
-d2_word_2_gram_set = set()
-for n_gram in d2_word_2_grams:
-    d2_word_2_gram_set.add(n_gram)
-print("D2.txt has " + str(len(d2_word_2_gram_set)) + " word 2-grams")
+    print("Similarity between first two is " + str(   len(     list_of_sets[0].intersection(list_of_sets[1])/len(list_of_sets[0].union(list_of_sets[1]  ) ))))
 
-d3_word_2_grams = NGrams.get_word_n_grams(FileIo.get_text_file_contents(FILE_D3), TWO_GRAM)
-d3_word_2_gram_set = set()
-for n_gram in d3_word_2_grams:
-    d3_word_2_gram_set.add(n_gram)
-print("D3.txt has " + str(len(d3_word_2_gram_set)) + " word 2-grams")
-
-d4_word_2_grams = NGrams.get_word_n_grams(FileIo.get_text_file_contents(FILE_D4), TWO_GRAM)
-d4_word_2_gram_set = set()
-for n_gram in d4_word_2_grams:
-    d4_word_2_gram_set.add(n_gram)
-print("D4.txt has " + str(len(d4_word_2_gram_set)) + " word 2-grams")
+character_2_gram_sets, character_3_gram_sets, word_2_gram_sets = get_n_gram_sets()
+print_jaccard_similarity(character_2_gram_sets)
