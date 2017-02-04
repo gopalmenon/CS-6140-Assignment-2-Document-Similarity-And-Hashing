@@ -23,29 +23,63 @@ def get_word_n_gram_set(file_name, n):
         word_n_gram_set.add(n_gram)
     return word_n_gram_set
 
-"""Print n-gram counts and return n-gram sets"""
-def get_n_gram_sets():
+"""Print n-gram set size"""
+def print_set_size(file_name, set_name, n_gram_type, n_gram_size):
+    print(file_name + " has " + str(len(set_name)) + " distinct " + n_gram_type + str(n_gram_size) + "-grams")
 
-    character_2_gram_sets = set()
-    character_3_gram_sets = set()
-    word_2_gram_sets = set()
+"""Return the Jaccard Similarity between the two sets"""
+def get_jaccard_similarity(set_1, set_2):
 
-    for file_name in ALL_FILES:
 
-        character_2_gram_sets.add(get_character_n_gram_set(file_name, TWO_GRAM))
-        character_3_gram_sets.add(get_character_n_gram_set(file_name, THREE_GRAM))
-        word_2_gram_sets.add(get_word_n_gram_set(file_name, TWO_GRAM))
 
-        print(file_name + " has " + str(len(character_2_gram_sets[len(character_2_gram_sets) - 1])) + " character " + str(TWO_GRAM) + "-grams")
-        print(file_name + " has " + str(len(character_3_gram_sets[len(character_3_gram_sets) - 1])) + " character " + str(THREE_GRAM) + "-grams")
-        print(file_name + " has " + str(len(word_2_gram_sets[len(word_2_gram_sets) - 1])) + " word " + str(TWO_GRAM) + "-grams")
 
-        return character_2_gram_sets, character_3_gram_sets, word_2_gram_sets
+"""Character 2-grams"""
+file_name = ALL_FILES[0]
+d1_char_2_grams = get_character_n_gram_set(file_name, TWO_GRAM)
+print_set_size(file_name, d1_char_2_grams, "character", TWO_GRAM)
 
-"""Print Jaccard Similarity for eklements in the set"""
-def print_jaccard_similarity(list_of_sets):
+file_name = ALL_FILES[1]
+d2_char_2_grams = get_character_n_gram_set(file_name, TWO_GRAM)
+print_set_size(file_name, d2_char_2_grams, "character", TWO_GRAM)
 
-    print("Similarity between first two is " + str(   len(     list_of_sets[0].intersection(list_of_sets[1])/len(list_of_sets[0].union(list_of_sets[1]  ) ))))
+file_name = ALL_FILES[2]
+d3_char_2_grams = get_character_n_gram_set(file_name, TWO_GRAM)
+print_set_size(file_name, d3_char_2_grams, "character", TWO_GRAM)
 
-character_2_gram_sets, character_3_gram_sets, word_2_gram_sets = get_n_gram_sets()
-print_jaccard_similarity(character_2_gram_sets)
+file_name = ALL_FILES[3]
+d4_char_2_grams = get_character_n_gram_set(file_name, TWO_GRAM)
+print_set_size(file_name, d4_char_2_grams, "character", TWO_GRAM)
+
+"""Character 3-grams"""
+file_name = ALL_FILES[0]
+d1_char_3_grams = get_character_n_gram_set(file_name, THREE_GRAM)
+print_set_size(file_name, d1_char_3_grams, "character", THREE_GRAM)
+
+file_name = ALL_FILES[1]
+d2_char_3_grams = get_character_n_gram_set(file_name, THREE_GRAM)
+print_set_size(file_name, d2_char_3_grams, "character", THREE_GRAM)
+
+file_name = ALL_FILES[2]
+d3_char_3_grams = get_character_n_gram_set(file_name, THREE_GRAM)
+print_set_size(file_name, d3_char_3_grams, "character", THREE_GRAM)
+
+file_name = ALL_FILES[3]
+d4_char_3_grams = get_character_n_gram_set(file_name, THREE_GRAM)
+print_set_size(file_name, d3_char_3_grams, "character", THREE_GRAM)
+
+"""Word 2-grams"""
+file_name = ALL_FILES[0]
+d1_word_2_grams = get_word_n_gram_set(file_name, TWO_GRAM)
+print_set_size(file_name, d1_word_2_grams, "word", TWO_GRAM)
+
+file_name = ALL_FILES[1]
+d2_word_2_grams = get_word_n_gram_set(file_name, TWO_GRAM)
+print_set_size(file_name, d2_word_2_grams, "word", TWO_GRAM)
+
+file_name = ALL_FILES[2]
+d3_word_2_grams = get_word_n_gram_set(file_name, TWO_GRAM)
+print_set_size(file_name, d3_word_2_grams, "word", TWO_GRAM)
+
+file_name = ALL_FILES[3]
+d4_word_2_grams = get_word_n_gram_set(file_name, TWO_GRAM)
+print_set_size(file_name, d4_word_2_grams, "word", TWO_GRAM)
