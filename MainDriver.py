@@ -47,7 +47,7 @@ def get_jaccard_similarity(set_1, set_2):
 
     return len(set_1.intersection(set_2))/len(set_1.union(set_2))
 
-def print_n_gram_stats():
+def print_jaccard_similarity_stats():
 
     """Character 2-grams"""
     file_name = ALL_FILES[0]
@@ -128,17 +128,49 @@ def print_n_gram_stats():
 """Find Jaccard Similarity between documents using minhashing"""
 
 
-def print_character_n_gram_minhashing_jaccard_similarity(document_1, document_2, n):
+def get_character_n_gram_minhashing_jaccard_similarity(document_1_character_n_grams, document_2_character_n_grams, number_of_hash_functions):
 
-    document_1_n_grams = get_character_n_gram_set(document_1, n)
-    fast_min_hasher_1 = FastMinHasher.FastMinHasher(document_1_n_grams, n)
+    fast_min_hasher_1 = FastMinHasher.FastMinHasher(document_1_character_n_grams, number_of_hash_functions)
     document_1_vector = fast_min_hasher_1.to_vector()
+    fast_min_hasher_2 = FastMinHasher.FastMinHasher(document_2_character_n_grams, number_of_hash_functions)
 
-    document_2_n_grams = get_character_n_gram_set(document_2, n)
-    fast_min_hasher_2 = FastMinHasher.FastMinHasher(document_2_n_grams, n)
+    return fast_min_hasher_2.get_jaccard_similarity(document_1_vector)
 
-    print("2. Jaccard Similarity between " + document_1 + " and " + document_2 + " is " + str(fast_min_hasher_2.get_jaccard_similarity(document_1_vector)))
 
-print_n_gram_stats()
-print_character_n_gram_minhashing_jaccard_similarity(ALL_FILES[0], ALL_FILES[1], 100)
+"""Print Jaccard Similarities among documents using fast minhashing on character 3-grams"""
+
+
+def print_fast_minhashing_jaccard_similarity_stats():
+
+    """Character 3-grams"""
+    file_name = ALL_FILES[0]
+    d1_char_3_grams = get_character_n_gram_set(file_name, THREE_GRAM)
+    print_set_size(file_name, d1_char_3_grams, "character", THREE_GRAM)
+
+    file_name = ALL_FILES[1]
+    d2_char_3_grams = get_character_n_gram_set(file_name, THREE_GRAM)
+    print_set_size(file_name, d2_char_3_grams, "character", THREE_GRAM)
+
+    file_name = ALL_FILES[2]
+    d3_char_3_grams = get_character_n_gram_set(file_name, THREE_GRAM)
+    print_set_size(file_name, d3_char_3_grams, "character", THREE_GRAM)
+
+    file_name = ALL_FILES[3]
+    d4_char_3_grams = get_character_n_gram_set(file_name, THREE_GRAM)
+    print_set_size(file_name, d3_char_3_grams, "character", THREE_GRAM)
+
+    """Loop through number of hash functions settings"""
+    for number_of_hash_functions in [20, 60, 150, 300, 600]:
+
+        print("2. Jaccard Similarity between character 3-grams of " + ALL_FILES[0] + " and " + ALL_FILES[1] + " with " + str(number_of_hash_functions) + " hash functions is " + format(get_character_n_gram_minhashing_jaccard_similarity(d1_char_3_grams, d2_char_3_grams, number_of_hash_functions), '.4f'))
+        print("2. Jaccard Similarity between character 3-grams of " + ALL_FILES[0] + " and " + ALL_FILES[2] + " with " + str(number_of_hash_functions) + " hash functions is " + format(get_character_n_gram_minhashing_jaccard_similarity(d1_char_3_grams, d3_char_3_grams, number_of_hash_functions), '.4f'))
+        print("2. Jaccard Similarity between character 3-grams of " + ALL_FILES[0] + " and " + ALL_FILES[3] + " with " + str(number_of_hash_functions) + " hash functions is " + format(get_character_n_gram_minhashing_jaccard_similarity(d1_char_3_grams, d4_char_3_grams, number_of_hash_functions), '.4f'))
+
+        print("2. Jaccard Similarity between character 3-grams of " + ALL_FILES[1] + " and " + ALL_FILES[2] + " with " + str(number_of_hash_functions) + " hash functions is " + format(get_character_n_gram_minhashing_jaccard_similarity(d2_char_3_grams, d3_char_3_grams, number_of_hash_functions), '.4f'))
+        print("2. Jaccard Similarity between character 3-grams of " + ALL_FILES[1] + " and " + ALL_FILES[3] + " with " + str(number_of_hash_functions) + " hash functions is " + format(get_character_n_gram_minhashing_jaccard_similarity(d2_char_3_grams, d3_char_3_grams, number_of_hash_functions), '.4f'))
+
+        print("2. Jaccard Similarity between character 3-grams of " + ALL_FILES[2] + " and " + ALL_FILES[3] + " with " + str(number_of_hash_functions) + " hash functions is " + format(get_character_n_gram_minhashing_jaccard_similarity(d3_char_3_grams, d4_char_3_grams, number_of_hash_functions), '.4f'))
+
+print_jaccard_similarity_stats()
+print_fast_minhashing_jaccard_similarity_stats()
 
