@@ -1,4 +1,5 @@
 import FileIo
+import FastMinHasher
 import HashFunctions
 import NGrams
 
@@ -7,7 +8,10 @@ ALL_FILES = ["Data/D1.txt", "Data/D2.txt", "Data/D3.txt", "Data/D4.txt"]
 TWO_GRAM = 2
 THREE_GRAM = 3
 
+
 """Return character n-gram set"""
+
+
 def get_character_n_gram_set(file_name, n):
     char_n_grams = NGrams.get_character_n_grams(FileIo.get_text_file_contents(file_name), n)
     char_n_gram_set = set()
@@ -15,7 +19,10 @@ def get_character_n_gram_set(file_name, n):
         char_n_gram_set.add(n_gram)
     return char_n_gram_set
 
+
 """Return word n-gram set"""
+
+
 def get_word_n_gram_set(file_name, n):
 
     word_n_grams = NGrams.get_word_n_grams(FileIo.get_text_file_contents(file_name), n)
@@ -24,12 +31,18 @@ def get_word_n_gram_set(file_name, n):
         word_n_gram_set.add(n_gram)
     return word_n_gram_set
 
+
 """Print n-gram set size"""
+
+
 def print_set_size(file_name, set_name, n_gram_type, n_gram_size):
 
     print(file_name + " has " + str(len(set_name)) + " distinct " + n_gram_type + str(n_gram_size) + "-grams")
 
+
 """Return the Jaccard Similarity between the two sets"""
+
+
 def get_jaccard_similarity(set_1, set_2):
 
     return len(set_1.intersection(set_2))/len(set_1.union(set_2))
@@ -88,33 +101,44 @@ def print_n_gram_stats():
     print_set_size(file_name, d4_word_2_grams, "word", TWO_GRAM)
 
     """Print Jaccard Similarities between character 2-grams"""
-    print("Jaccard Similarity between character 2-grams of " + ALL_FILES[0] + " and " + ALL_FILES[1] + " is " + format(get_jaccard_similarity(d1_char_2_grams, d2_char_2_grams), '.4f'))
-    print("Jaccard Similarity between character 2-grams of " + ALL_FILES[0] + " and " + ALL_FILES[2] + " is " + format(get_jaccard_similarity(d1_char_2_grams, d3_char_2_grams), '.4f'))
-    print("Jaccard Similarity between character 2-grams of " + ALL_FILES[0] + " and " + ALL_FILES[3] + " is " + format(get_jaccard_similarity(d1_char_2_grams, d4_char_2_grams), '.4f'))
-    print("Jaccard Similarity between character 2-grams of " + ALL_FILES[1] + " and " + ALL_FILES[2] + " is " + format(get_jaccard_similarity(d2_char_2_grams, d3_char_2_grams), '.4f'))
-    print("Jaccard Similarity between character 2-grams of " + ALL_FILES[1] + " and " + ALL_FILES[3] + " is " + format(get_jaccard_similarity(d2_char_2_grams, d4_char_2_grams), '.4f'))
-    print("Jaccard Similarity between character 2-grams of " + ALL_FILES[2] + " and " + ALL_FILES[3] + " is " + format(get_jaccard_similarity(d3_char_2_grams, d4_char_2_grams), '.4f'))
+    print("1. Jaccard Similarity between character 2-grams of " + ALL_FILES[0] + " and " + ALL_FILES[1] + " is " + format(get_jaccard_similarity(d1_char_2_grams, d2_char_2_grams), '.4f'))
+    print("1. Jaccard Similarity between character 2-grams of " + ALL_FILES[0] + " and " + ALL_FILES[2] + " is " + format(get_jaccard_similarity(d1_char_2_grams, d3_char_2_grams), '.4f'))
+    print("1. Jaccard Similarity between character 2-grams of " + ALL_FILES[0] + " and " + ALL_FILES[3] + " is " + format(get_jaccard_similarity(d1_char_2_grams, d4_char_2_grams), '.4f'))
+    print("1. Jaccard Similarity between character 2-grams of " + ALL_FILES[1] + " and " + ALL_FILES[2] + " is " + format(get_jaccard_similarity(d2_char_2_grams, d3_char_2_grams), '.4f'))
+    print("1. Jaccard Similarity between character 2-grams of " + ALL_FILES[1] + " and " + ALL_FILES[3] + " is " + format(get_jaccard_similarity(d2_char_2_grams, d4_char_2_grams), '.4f'))
+    print("1. Jaccard Similarity between character 2-grams of " + ALL_FILES[2] + " and " + ALL_FILES[3] + " is " + format(get_jaccard_similarity(d3_char_2_grams, d4_char_2_grams), '.4f'))
 
     """Print Jaccard Similarities between character 3-grams"""
-    print("Jaccard Similarity between character 3-grams of " + ALL_FILES[0] + " and " + ALL_FILES[1] + " is " + format(get_jaccard_similarity(d1_char_3_grams, d2_char_3_grams), '.4f'))
-    print("Jaccard Similarity between character 3-grams of " + ALL_FILES[0] + " and " + ALL_FILES[2] + " is " + format(get_jaccard_similarity(d1_char_3_grams, d3_char_3_grams), '.4f'))
-    print("Jaccard Similarity between character 3-grams of " + ALL_FILES[0] + " and " + ALL_FILES[3] + " is " + format(get_jaccard_similarity(d1_char_3_grams, d4_char_3_grams), '.4f'))
-    print("Jaccard Similarity between character 3-grams of " + ALL_FILES[1] + " and " + ALL_FILES[2] + " is " + format(get_jaccard_similarity(d2_char_3_grams, d3_char_3_grams), '.4f'))
-    print("Jaccard Similarity between character 3-grams of " + ALL_FILES[1] + " and " + ALL_FILES[3] + " is " + format(get_jaccard_similarity(d2_char_3_grams, d4_char_3_grams), '.4f'))
-    print("Jaccard Similarity between character 3-grams of " + ALL_FILES[2] + " and " + ALL_FILES[3] + " is " + format(get_jaccard_similarity(d3_char_3_grams, d4_char_3_grams), '.4f'))
+    print("1. Jaccard Similarity between character 3-grams of " + ALL_FILES[0] + " and " + ALL_FILES[1] + " is " + format(get_jaccard_similarity(d1_char_3_grams, d2_char_3_grams), '.4f'))
+    print("1. Jaccard Similarity between character 3-grams of " + ALL_FILES[0] + " and " + ALL_FILES[2] + " is " + format(get_jaccard_similarity(d1_char_3_grams, d3_char_3_grams), '.4f'))
+    print("1. Jaccard Similarity between character 3-grams of " + ALL_FILES[0] + " and " + ALL_FILES[3] + " is " + format(get_jaccard_similarity(d1_char_3_grams, d4_char_3_grams), '.4f'))
+    print("1. Jaccard Similarity between character 3-grams of " + ALL_FILES[1] + " and " + ALL_FILES[2] + " is " + format(get_jaccard_similarity(d2_char_3_grams, d3_char_3_grams), '.4f'))
+    print("1. Jaccard Similarity between character 3-grams of " + ALL_FILES[1] + " and " + ALL_FILES[3] + " is " + format(get_jaccard_similarity(d2_char_3_grams, d4_char_3_grams), '.4f'))
+    print("1. Jaccard Similarity between character 3-grams of " + ALL_FILES[2] + " and " + ALL_FILES[3] + " is " + format(get_jaccard_similarity(d3_char_3_grams, d4_char_3_grams), '.4f'))
 
     """Print Jaccard Similarities between word 2-grams"""
-    print("Jaccard Similarity between word 2-grams of " + ALL_FILES[0] + " and " + ALL_FILES[1] + " is " + format(get_jaccard_similarity(d1_word_2_grams, d2_word_2_grams), '.4f'))
-    print("Jaccard Similarity between word 2-grams of " + ALL_FILES[0] + " and " + ALL_FILES[2] + " is " + format(get_jaccard_similarity(d1_word_2_grams, d3_word_2_grams), '.4f'))
-    print("Jaccard Similarity between word 2-grams of " + ALL_FILES[0] + " and " + ALL_FILES[3] + " is " + format(get_jaccard_similarity(d1_word_2_grams, d4_word_2_grams), '.4f'))
-    print("Jaccard Similarity between word 2-grams of " + ALL_FILES[1] + " and " + ALL_FILES[2] + " is " + format(get_jaccard_similarity(d2_word_2_grams, d3_word_2_grams), '.4f'))
-    print("Jaccard Similarity between word 2-grams of " + ALL_FILES[1] + " and " + ALL_FILES[3] + " is " + format(get_jaccard_similarity(d2_word_2_grams, d4_word_2_grams), '.4f'))
-    print("Jaccard Similarity between word 2-grams of " + ALL_FILES[2] + " and " + ALL_FILES[3] + " is " + format(get_jaccard_similarity(d3_word_2_grams, d4_word_2_grams), '.4f'))
+    print("1. Jaccard Similarity between word 2-grams of " + ALL_FILES[0] + " and " + ALL_FILES[1] + " is " + format(get_jaccard_similarity(d1_word_2_grams, d2_word_2_grams), '.4f'))
+    print("1. Jaccard Similarity between word 2-grams of " + ALL_FILES[0] + " and " + ALL_FILES[2] + " is " + format(get_jaccard_similarity(d1_word_2_grams, d3_word_2_grams), '.4f'))
+    print("1. Jaccard Similarity between word 2-grams of " + ALL_FILES[0] + " and " + ALL_FILES[3] + " is " + format(get_jaccard_similarity(d1_word_2_grams, d4_word_2_grams), '.4f'))
+    print("1. Jaccard Similarity between word 2-grams of " + ALL_FILES[1] + " and " + ALL_FILES[2] + " is " + format(get_jaccard_similarity(d2_word_2_grams, d3_word_2_grams), '.4f'))
+    print("1. Jaccard Similarity between word 2-grams of " + ALL_FILES[1] + " and " + ALL_FILES[3] + " is " + format(get_jaccard_similarity(d2_word_2_grams, d4_word_2_grams), '.4f'))
+    print("1. Jaccard Similarity between word 2-grams of " + ALL_FILES[2] + " and " + ALL_FILES[3] + " is " + format(get_jaccard_similarity(d3_word_2_grams, d4_word_2_grams), '.4f'))
+
+
+"""Find Jaccard Similarity between documents using minhashing"""
+
+
+def print_character_n_gram_minhashing_jaccard_similarity(document_1, document_2, n):
+
+    document_1_n_grams = get_character_n_gram_set(document_1, n)
+    fast_min_hasher_1 = FastMinHasher.FastMinHasher(document_1_n_grams, n)
+    document_1_vector = fast_min_hasher_1.to_vector()
+
+    document_2_n_grams = get_character_n_gram_set(document_2, n)
+    fast_min_hasher_2 = FastMinHasher.FastMinHasher(document_2_n_grams, n)
+
+    print("2. Jaccard Similarity between " + document_1 + " and " + document_2 + " is " + str(fast_min_hasher_2.get_jaccard_similarity(document_1_vector)))
 
 print_n_gram_stats()
-n_gram_hash = HashFunctions.NGramHash()
+print_character_n_gram_minhashing_jaccard_similarity(ALL_FILES[0], ALL_FILES[1], 100)
 
-print(str( n_gram_hash.get_n_gram_hash("Gopal", 0)))
-print(str( n_gram_hash.get_n_gram_hash("Gopal", 1)))
-print(str( n_gram_hash.get_n_gram_hash("Gopal", 2)))
-print(str( n_gram_hash.get_n_gram_hash("Gopal", 0)))
