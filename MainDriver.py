@@ -1,4 +1,5 @@
 import FileIo
+import HashFunctions
 import NGrams
 
 ALL_FILES = ["Data/D1.txt", "Data/D2.txt", "Data/D3.txt", "Data/D4.txt"]
@@ -111,3 +112,9 @@ def print_n_gram_stats():
     print("Jaccard Similarity between word 2-grams of " + ALL_FILES[2] + " and " + ALL_FILES[3] + " is " + format(get_jaccard_similarity(d3_word_2_grams, d4_word_2_grams), '.4f'))
 
 print_n_gram_stats()
+n_gram_hash = HashFunctions.NGramHash()
+
+print(str( n_gram_hash.get_n_gram_hash("Gopal", 0)))
+print(str( n_gram_hash.get_n_gram_hash("Gopal", 1)))
+print(str( n_gram_hash.get_n_gram_hash("Gopal", 2)))
+print(str( n_gram_hash.get_n_gram_hash("Gopal", 0)))
