@@ -17,7 +17,7 @@ Monday, February 13}
 
 \section{Creating k-Grams (40 points)}
 
-\paragraph{A: (5 points)} 
+\paragraph{A: (20 points)} 
 How many distinct $k$-grams are there for each document with each type of $k$-gram? Youshould report $4 \times 3 = 12$ different numbers.
 
     \begin{table}[!h] 
@@ -27,57 +27,87 @@ How many distinct $k$-grams are there for each document with each type of $k$-gr
       \hline
    Document  & character $2$-grams &  character $3$-grams & word $2$-grams  \\
       \hline      
-      D1.txt &   $330$              &  $1297$  &          $520$                          \\
+      $D1$ &   $330$              &  $1297$  &          $520$                          \\
       \hline      
-      D2.txt &    $360$             & $1514$   &           $631$                         \\
+      $D2$ &    $360$             & $1514$   &           $631$                         \\
       \hline      
-      D3.txt &    $353$           &  $1541$  &             $840$                       \\
+      $D3$ &    $353$           &  $1541$  &             $840$                       \\
       \hline      
-      D4.txt &      $297$          &  $1541$  &             $412$                       \\
+      $D4$ &      $297$          &  $1541$  &             $412$                       \\
       \hline
     \end{tabular}
     \end{table}
 
-\paragraph{B: (10 points)}  
+\paragraph{B: (20 points)}  
+\paragraph{A: (20 points)}  
 Compute the Jaccard similarity between all pairs of documents for each type of $k$-gram.You should report $3 \times 6 = 18$ different numbers.
 
 \begin{table}[!ht]  
   \centering
-  \caption{Jaccard distance for character $2$-grams}
+  \caption{Jaccard similarity for character $2$-grams}
   \begin{tabular}{|c|c|c|c|c|}
     \cline{2-5}
-    \multicolumn{1}{c|}{} & D1.txt & D2.txt & D3.txt & D4.txt\\ \hline
-    D1.txt &    &    &   & \\ \hline
-    D2.txt & 0.8499   &    &   & \\ \hline
-    D3.txt & 0.7740   & 0.7649   &   & \\ \hline
-    D4.txt & 0.7084  & 0.7109  & 0.7241 & \\ \hline
+    \multicolumn{1}{c|}{} & $D1$ & $D2$ & $D3$ & $D4$\\ \hline
+    $D1$ &    &    &   & \\ \hline
+    $D2$ & $0.8499$   &    &   & \\ \hline
+    $D3$ & $0.7740$   & $0.7649$   &   & \\ \hline
+    $D4$ & $0.7084$  & $0.7109$  & $0.7241$ & \\ \hline
   \end{tabular}
   \end{table}
 
 \begin{table}[!ht]  
   \centering
-  \caption{Jaccard distance for character $3$-grams}
+  \caption{Jaccard similarity for character $3$-grams}
   \begin{tabular}{|c|c|c|c|c|}
     \cline{2-5}
-    \multicolumn{1}{c|}{} & D1.txt & D2.txt & D3.txt & D4.txt\\ \hline
-    D1.txt &    &    &   & \\ \hline
-    D2.txt & 0.6400   &    &   & \\ \hline
-    D3.txt &  0.4606  &  0.4404  &   & \\ \hline
-    D4.txt & 0.3280  & 0.3125  & 0.3624 & \\ \hline
+    \multicolumn{1}{c|}{} & $D1$ & $D2$ & $D3$ & $D4$\\ \hline
+    $D1$ &    &    &   & \\ \hline
+    $D2$ & $0.6400$   &    &   & \\ \hline
+    $D3$ &  $0.4606$  &  $0.4404$  &   & \\ \hline
+    $D4$ & $0.3280$  & $0.3125$  & $0.3624$ & \\ \hline
   \end{tabular}
   \end{table}
   
 \begin{table}[!ht]  
   \centering
-  \caption{Jaccard distance for word $2$-grams}
+  \caption{Jaccard similarity for word $2$-grams}
   \begin{tabular}{|c|c|c|c|c|}
     \cline{2-5}
-    \multicolumn{1}{c|}{} & D1.txt & D2.txt & D3.txt & D4.txt\\ \hline
-    D1.txt &    &    &   & \\ \hline
-    D2.txt &  0.2579  &    &   & \\ \hline
-    D3.txt &  0.0334  & 0.0251   &   & \\ \hline
-    D4.txt &  0.0054 &  0.0058 & 0.0121 & \\ \hline
+    \multicolumn{1}{c|}{} & $D1$ & $D2$ & $D3$ & $D4$\\ \hline
+    $D1$ &    &    &   & \\ \hline
+    $D2$ &  $0.2579$  &    &   & \\ \hline
+    $D3$ &  $0.0334$  & $0.0251$   &   & \\ \hline
+    $D4$ &  $0.0054$ &  $0.0058$ & $0.0121$ & \\ \hline
   \end{tabular}
   \end{table}
+
+\section{Min Hashing (30 points)}
+Using grams \textbf{G2}, build a min-hash signature for document $D1$ and $D2$ using $t = \{20, 60, 150, 300, 600\}$ hash functions. For each value of $t$ report the approximate Jaccard similarity between the pair of documents $D1$ and $D2$, estimating the Jaccard similarity:
+
+\begin{equation*}
+\begin{aligned}
+P(y' \ne y) &= P(y' \ne y, x_1 = -1) + P(y' \ne y, x_1 = 1)
+\end{aligned}
+\end{equation*} 
+
+    \begin{table}[!h] 
+    \centering
+  \caption{Jaccard similarity between documents $D1$ and $D2$ using character $3$-grams}
+    \begin{tabular}{|c|c|c|}
+      \hline
+   $t$ (number of hash functions)  & Jaccard Similarity  & Error \% \\
+      \hline      
+      $20$ &   $0.6500$  &   $1.5625$   \\
+      \hline      
+      $60$ &    $0.7000$  & $9.3750$ \\
+      \hline      
+      $150$ &    $0.6600$  &  $3.1250$\\
+      \hline      
+      $300$ &      $0.6333$  &   $-1.0469$\\
+      \hline
+      $600$ &      $0.6317$    & $-1.2969$\\
+      \hline
+    \end{tabular}
+    \end{table}
 
 \end{document}
