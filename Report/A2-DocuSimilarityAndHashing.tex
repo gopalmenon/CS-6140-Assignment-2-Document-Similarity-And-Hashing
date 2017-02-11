@@ -1,0 +1,83 @@
+\documentclass[11pt]{article}
+
+\usepackage{classDM17}
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\title{Asmt 2: Document Similarity and Hashing}
+\author{Gopal Menon\\Turn in (\textbf{a pdf}) through Canvas by 2:45pm: \\
+Monday, February 13}
+\date{}
+
+\begin{document}
+\maketitle
+
+
+
+\section{Creating k-Grams (40 points)}
+
+\paragraph{A: (5 points)} 
+How many distinct $k$-grams are there for each document with each type of $k$-gram? Youshould report $4 \times 3 = 12$ different numbers.
+
+    \begin{table}[!h] 
+    \centering
+    \caption{Number of distinct $k$-grams}
+    \begin{tabular}{|c|c|c|c|}
+      \hline
+   Document  & character $2$-grams &  character $3$-grams & word $2$-grams  \\
+      \hline      
+      D1.txt &   $330$              &  $1297$  &          $520$                          \\
+      \hline      
+      D2.txt &    $360$             & $1514$   &           $631$                         \\
+      \hline      
+      D3.txt &    $353$           &  $1541$  &             $840$                       \\
+      \hline      
+      D4.txt &      $297$          &  $1541$  &             $412$                       \\
+      \hline
+    \end{tabular}
+    \end{table}
+
+\paragraph{B: (10 points)}  
+Compute the Jaccard similarity between all pairs of documents for each type of $k$-gram.You should report $3 \times 6 = 18$ different numbers.
+
+\begin{table}[!ht]  
+  \centering
+  \caption{Jaccard distance for character $2$-grams}
+  \begin{tabular}{|c|c|c|c|c|}
+    \cline{2-5}
+    \multicolumn{1}{c|}{} & D1.txt & D2.txt & D3.txt & D4.txt\\ \hline
+    D1.txt &    &    &   & \\ \hline
+    D2.txt & 0.8499   &    &   & \\ \hline
+    D3.txt & 0.7740   & 0.7649   &   & \\ \hline
+    D4.txt & 0.7084  & 0.7109  & 0.7241 & \\ \hline
+  \end{tabular}
+  \end{table}
+
+\begin{table}[!ht]  
+  \centering
+  \caption{Jaccard distance for character $3$-grams}
+  \begin{tabular}{|c|c|c|c|c|}
+    \cline{2-5}
+    \multicolumn{1}{c|}{} & D1.txt & D2.txt & D3.txt & D4.txt\\ \hline
+    D1.txt &    &    &   & \\ \hline
+    D2.txt & 0.6400   &    &   & \\ \hline
+    D3.txt &  0.4606  &  0.4404  &   & \\ \hline
+    D4.txt & 0.3280  & 0.3125  & 0.3624 & \\ \hline
+  \end{tabular}
+  \end{table}
+  
+\begin{table}[!ht]  
+  \centering
+  \caption{Jaccard distance for word $2$-grams}
+  \begin{tabular}{|c|c|c|c|c|}
+    \cline{2-5}
+    \multicolumn{1}{c|}{} & D1.txt & D2.txt & D3.txt & D4.txt\\ \hline
+    D1.txt &    &    &   & \\ \hline
+    D2.txt &  0.2579  &    &   & \\ \hline
+    D3.txt &  0.0334  & 0.0251   &   & \\ \hline
+    D4.txt &  0.0054 &  0.0058 & 0.0121 & \\ \hline
+  \end{tabular}
+  \end{table}
+
+\end{document}
