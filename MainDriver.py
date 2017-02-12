@@ -160,16 +160,9 @@ def print_fast_minhashing_jaccard_similarity_stats():
     print_set_size(file_name, d3_char_3_grams, "character", THREE_GRAM)
 
     """Loop through number of hash functions settings"""
-    for number_of_hash_functions in [20, 60, 150, 300, 600]:
+    for number_of_hash_functions in [20, 60, 150, 300, 600, 1200, 2400]:
 
         print("2. Jaccard Similarity between character 3-grams of " + ALL_FILES[0] + " and " + ALL_FILES[1] + " with " + str(number_of_hash_functions) + " hash functions is " + format(get_character_n_gram_minhashing_jaccard_similarity(d1_char_3_grams, d2_char_3_grams, number_of_hash_functions), '.4f'))
-        print("2. Jaccard Similarity between character 3-grams of " + ALL_FILES[0] + " and " + ALL_FILES[2] + " with " + str(number_of_hash_functions) + " hash functions is " + format(get_character_n_gram_minhashing_jaccard_similarity(d1_char_3_grams, d3_char_3_grams, number_of_hash_functions), '.4f'))
-        print("2. Jaccard Similarity between character 3-grams of " + ALL_FILES[0] + " and " + ALL_FILES[3] + " with " + str(number_of_hash_functions) + " hash functions is " + format(get_character_n_gram_minhashing_jaccard_similarity(d1_char_3_grams, d4_char_3_grams, number_of_hash_functions), '.4f'))
-
-        print("2. Jaccard Similarity between character 3-grams of " + ALL_FILES[1] + " and " + ALL_FILES[2] + " with " + str(number_of_hash_functions) + " hash functions is " + format(get_character_n_gram_minhashing_jaccard_similarity(d2_char_3_grams, d3_char_3_grams, number_of_hash_functions), '.4f'))
-        print("2. Jaccard Similarity between character 3-grams of " + ALL_FILES[1] + " and " + ALL_FILES[3] + " with " + str(number_of_hash_functions) + " hash functions is " + format(get_character_n_gram_minhashing_jaccard_similarity(d2_char_3_grams, d3_char_3_grams, number_of_hash_functions), '.4f'))
-
-        print("2. Jaccard Similarity between character 3-grams of " + ALL_FILES[2] + " and " + ALL_FILES[3] + " with " + str(number_of_hash_functions) + " hash functions is " + format(get_character_n_gram_minhashing_jaccard_similarity(d3_char_3_grams, d4_char_3_grams, number_of_hash_functions), '.4f'))
 
 print_jaccard_similarity_stats()
 print_fast_minhashing_jaccard_similarity_stats()
