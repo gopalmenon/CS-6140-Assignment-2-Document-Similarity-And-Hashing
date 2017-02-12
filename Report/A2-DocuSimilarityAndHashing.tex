@@ -175,6 +175,34 @@ Using these values of $r$ and $b$, the S-curve obtained is shown in figure \ref{
 \caption{S-curve with $b=4$ and $r=27$}
 \label{final}
 \end{figure}
+
 \paragraph{B: (24 points)} 
+
+For the character $3$-grams, the probability of finding the document pairs as being similar as a result of the documents hashing to the same value in at least one of the bands is given below in table \ref{collprob}.
+
+    \begin{table}[!h] 
+    \centering
+    \caption{Probability of finding a collision}
+    \label{collprob}
+    \begin{tabular}{|c|c|c|}
+      \hline
+   Document Pair & Jaccard Similarity $s$ & Collision Probability $f(s) = 1 - \left ( 1 - s^4 \right ) ^ {27}$   \\
+      \hline      
+      $D1-D2$ &   $0.6400$              &  $0.9930$   \\
+      \hline      
+      $D1-D3$ &    $0.4606$             & $0.7116$   \\
+      \hline      
+      $D1-D4$ &    $0.3280$           &  $0.2697$   \\
+      \hline      
+      $D2-D3$ &      $0.4404$          &  $0.6449$   \\
+      \hline
+      $D2-D4$ &      $0.3125$          &  $0.2280$   \\
+      \hline
+      $D3-D4$ &      $0.3624$          &  $0.3749$   \\
+      \hline
+    \end{tabular}
+    \end{table}
+
+\section{Bonus (3 points)}
 
 \end{document}
