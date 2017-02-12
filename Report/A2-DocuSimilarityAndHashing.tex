@@ -127,4 +127,54 @@ This means that as we increase the number of hash functions $t$, the probability
 
 From the experiment, it seems that the best value for $t$ is $60$ where the Jaccard Similarity was $0.6333$. However, in another iteration of the experiment, the best value of $0.6338$ was obtained with $2400$ hash functions. 
 
+\section{LSH (30 points)}
+
+\paragraph{A: (8 points)} 
+
+The probability of finding a collision in the hash value for two documents in any of the $r$ bands each containing $b$ hash functions is given by
+
+\begin{equation*}
+\begin{aligned}
+f(s) = 1 - \left ( 1 - s^b \right ) ^ r
+\end{aligned}
+\end{equation*}
+
+To find all documents pairs with Jaccard Similarity above $\tau = 0.4$, we should select $b$ and $r$ so that the S-curve has the steepest slope at $s=0.4$. A good estimate for this is given by:
+
+\begin{equation*}
+\begin{aligned}
+b &\approx -\log_{\tau} \left (k \right )\\
+r &= \frac{k}{b}
+\end{aligned}
+\end{equation*}
+
+where $k$ is the total number of hash functions. Using the values of $k=160$ and $\tau=0.4$, 
+
+\begin{equation*}
+\begin{aligned}
+b &\approx -\log_{0.4} \left (160 \right )\\
+&= \floor*{5.5388}\\
+&= 5\\
+r &= \frac{160}{5}\\
+&=32
+\end{aligned}
+\end{equation*}
+
+Using these values of $r$ and $b$, the S-curve obtained is shown in figure \ref{1stCut}. After some trial and error with $b=4$ and $r=27$, the S-curve obtained is close to the steepest value at $\tau=0.4$. This is shown in figure \ref{final}.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=4in]{figures/1stCut.png}
+\caption{S-curve with $b=5$ and $r=32$}
+\label{1stCut}
+\end{figure}
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=4in]{figures/final.png}
+\caption{S-curve with $b=4$ and $r=27$}
+\label{final}
+\end{figure}
+\paragraph{B: (24 points)} 
+
 \end{document}
