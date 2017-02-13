@@ -34,7 +34,7 @@ should report $4 \times 3 = 12$ different numbers.
       \hline      
       $D3$ &    $353$           &  $1541$  &             $840$                       \\
       \hline      
-      $D4$ &      $297$          &  $1541$  &             $412$                       \\
+      $D4$ &      $297$          &  $1023$  &             $412$                       \\
       \hline
     \end{tabular}
     \end{table}
@@ -153,14 +153,14 @@ where $k$ is the total number of hash functions. Using the values of $k=160$ and
 \begin{equation*}
 \begin{aligned}
 b &\approx -\log_{0.4} \left (160 \right )\\
-&= \floor*{5.5388}\\
+&\approx \floor*{5.5388}\\
 &= 5\\
 r &= \frac{160}{5}\\
 &=32
 \end{aligned}
 \end{equation*}
 
-Using these values of $r$ and $b$, the S-curve obtained is shown in figure \ref{1stCut}. After some trial and error with $b=4$ and $r=27$, the S-curve obtained is close to the steepest value at $\tau=0.4$. This is shown in figure \ref{final}.
+Using these values of $r$ and $b$, the S-curve obtained is shown in figure \ref{1stCut}. After some trial and error it was found that with $b=4$ and $r=27$, the S-curve obtained is close to the steepest value at $\tau=0.4$. This is shown in figure \ref{final}.
 
 \begin{figure}[!htb]
 \centering
@@ -203,6 +203,5 @@ For the character $3$-grams, the probability of finding the document pairs as be
     \end{tabular}
     \end{table}
 
-\section{Bonus (3 points)}
 
 \end{document}
