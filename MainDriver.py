@@ -81,7 +81,7 @@ def print_jaccard_similarity_stats():
 
     file_name = ALL_FILES[3]
     d4_char_3_grams = get_character_n_gram_set(file_name, THREE_GRAM)
-    print_set_size(file_name, d3_char_3_grams, "character", THREE_GRAM)
+    print_set_size(file_name, d4_char_3_grams, "character", THREE_GRAM)
 
     """Word 2-grams"""
     file_name = ALL_FILES[0]
@@ -157,7 +157,7 @@ def print_fast_minhashing_jaccard_similarity_stats():
 
     file_name = ALL_FILES[3]
     d4_char_3_grams = get_character_n_gram_set(file_name, THREE_GRAM)
-    print_set_size(file_name, d3_char_3_grams, "character", THREE_GRAM)
+    print_set_size(file_name, d4_char_3_grams, "character", THREE_GRAM)
 
     """Loop through number of hash functions settings"""
     for number_of_hash_functions in [20, 60, 150, 300, 600, 1200, 2400]:
